@@ -26,7 +26,7 @@ Junos::Ez::Facts::Keeper.define( :version ) do |ndev, facts|
     swver = ndev.rpc.command "show version"
   end
 
-  if swver.name == 'multi-routing-engine-results'
+  if swver.at_xpath 'multi-routing-engine-results'
     swver_infos = swver.xpath('//software-information')
     swver_infos.each do |re_sw|
       re_name = re_sw.xpath('preceding-sibling::re-name').text.upcase
